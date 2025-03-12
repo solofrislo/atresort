@@ -78,23 +78,24 @@
             /* เพิ่มเส้นใต้เมนู */
         }
 
-            /* Navbar Menu Hover Effect */
-    .nav-menu ul li a {
-        position: relative;
-        padding: 10px 15px;
-        transition: all 0.3s ease-in-out;
-        border-radius: 8px;
-    }
-
-    /* เอฟเฟกต์ Hover บนเมนู (เฉพาะจอใหญ่) */
-    @media (min-width: 992px) {
-        .nav-menu ul li a:hover {
-            background-color: #16a085;
-            color: white !important;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
+        /* Navbar Menu Hover Effect */
+        .nav-menu ul li a {
+            position: relative;
+            padding: 10px 15px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
         }
-    }
+
+        /* เอฟเฟกต์ Hover บนเมนู (เฉพาะจอใหญ่) */
+        @media (min-width: 992px) {
+            .nav-menu ul li a:hover {
+                background-color: #16a085;
+                color: white !important;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+                transform: translateY(-2px);
+            }
+        }
+
         /* Banner */
         .banner {
             width: 100%;
@@ -201,76 +202,219 @@
         .footer .social-icons a:hover {
             color: #1abc9c;
         }
+
+        /* เมนูติดต่อเรา */
+        #menuContact {
+            position: fixed;
+            bottom: 270px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+
+        /* เมื่อเมนูเปิด */
+        #menuContact.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* สไตล์ปุ่มไอคอน */
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .icon-btn i {
+            font-size: 24px;
+        }
+
+        /* สีของไอคอน */
+        .icon-btn:first-child i {
+            color: #1877F2;
+            /* Facebook */
+        }
+
+        .icon-btn:last-child i {
+            color: #06C755;
+            /* Line */
+        }
+
+        /* เอฟเฟกต์ Hover */
+        .icon-btn:hover {
+            background: #f0f0f0;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
 <body>
 
-   <!-- Top Nav -->
-<div class="nav-top">
-    <span><i class="fa-solid fa-phone"></i> โทร. 083-8649613</span>
-</div>
 
-<header>
-    <div class="nav-container d-flex align-items-center justify-content-between px-3 py-2">
-        <!-- โลโก้ -->
-        <div class="nav-logo d-flex align-items-center">
-            <img src="Logo-01.png" alt="AT Resort Logo" class="logo-img me-2" style="height: 50px; width: 50px;object-fit: contain; ">
-            <h1 class="m-0">AT Resort รีสอร์ท</h1>
+
+
+    <!-- ปุ่ม Scroll to Top -->
+    <button type="button" id="btnScrollTop" class="btn rounded-circle shadow-none" onclick="topFunction()"
+        style="display: none; position: fixed; bottom: 130px; right: 20px; background: #16a085; color: white; width: 50px; height: 50px; border: none; border-radius: 50%; z-index: 1000;">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- ปุ่มติดต่อเรา -->
+    <button type="button" id="btnContact" class="btn rounded-circle shadow-none"
+        style="position: fixed; bottom: 200px; right: 20px; background: #3498db; color: white; width: 50px; height: 50px; border: none; border-radius: 50%; z-index: 1000;">
+        <i class="fa-solid fa-message"></i>
+    </button>
+
+    <!-- เมนูติดต่อเรา (Facebook และ Line) -->
+    <div id="menuContact" class="contact-menu">
+        <a href="https://www.facebook.com/ATresort1" target="_blank" class="icon-btn">
+            <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://line.me" target="_blank" class="icon-btn">
+            <i class="fa-brands fa-line"></i>
+        </a>
+    </div>
+
+
+
+    <!-- Top Nav -->
+    <div class="nav-top">
+        <span><i class="fa-solid fa-phone text-decoration-none"></i> โทร. 083-8649613</span>
+    </div>
+
+    <header>
+        <div class="nav-container d-flex align-items-center justify-content-between px-3 py-2">
+            <!-- โลโก้ -->
+            <div class="nav-logo d-flex align-items-center">
+                <img src="Logo-01.png" alt="AT Resort Logo" class="logo-img me-2"
+                    style="height: 50px; width: 50px;object-fit: contain; ">
+                <span class="m-0" style="font-size: 22px; font-weight: bold;">AT Resort รีสอร์ท</span>
+            </div>
+
+            <!-- เมนูหลัก (แสดงเฉพาะจอใหญ่) -->
+            <nav class="nav-menu d-none d-lg-flex">
+                <ul class="d-flex list-unstyled m-0 gap-4">
+                    <li><a href="#" class="text-decoration-none text-dark fw-semibold">ห้องพัก</a></li>
+                    <li><a href="#" class="text-decoration-none text-dark fw-semibold">บรรยากาศรีสอร์ท</a></li>
+                    <li><a href="#" class="text-decoration-none text-dark fw-semibold">เกี่ยวกับเรา</a></li>
+                </ul>
+            </nav>
+
+            <!-- Burger Menu Button (แสดงเฉพาะจอเล็ก) -->
+            <button class="navbar-toggler d-lg-none border-0 bg-transparent shadow-sm rounded-circle p-2" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars fs-3"></i>
+            </button>
         </div>
 
-        <!-- เมนูหลัก (แสดงเฉพาะจอใหญ่) -->
-        <nav class="nav-menu d-none d-lg-flex">
-            <ul class="d-flex list-unstyled m-0 gap-4">
-                <li><a href="#" class="text-decoration-none text-dark fw-semibold">ห้องพัก</a></li>
-                <li><a href="#" class="text-decoration-none text-dark fw-semibold">บรรยากาศรีสอร์ท</a></li>
-                <li><a href="#" class="text-decoration-none text-dark fw-semibold">เกี่ยวกับเรา</a></li>
+        <!-- เมนูสำหรับจอเล็ก (ใช้ collapse) -->
+        <div class="collapse navbar-collapse d-lg-none bg-light p-3 shadow-sm rounded" id="navbarNav">
+            <ul class="navbar-nav d-flex flex-column align-items-center text-center">
+                <li class="py-2 w-100"><a href="#"
+                        class="text-decoration-none text-dark fw-semibold d-block py-2">ห้องพัก</a></li>
+                <li class="py-2 w-100"><a href="#"
+                        class="text-decoration-none text-dark fw-semibold d-block py-2">บรรยากาศรีสอร์ท</a></li>
+                <li class="py-2 w-100"><a href="#"
+                        class="text-decoration-none text-dark fw-semibold d-block py-2">เกี่ยวกับเรา</a></li>
             </ul>
-        </nav>
-
-        <!-- Burger Menu Button (แสดงเฉพาะจอเล็ก) -->
-        <button class="navbar-toggler d-lg-none border-0 bg-transparent shadow-sm rounded-circle p-2" 
-                type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <i class="fa-solid fa-bars fs-3"></i>
-        </button>
-    </div>
-
-    <!-- เมนูสำหรับจอเล็ก (ใช้ collapse) -->
-    <div class="collapse navbar-collapse d-lg-none bg-light p-3 shadow-sm rounded" id="navbarNav">
-        <ul class="navbar-nav d-flex flex-column align-items-center text-center">
-            <li class="py-2 w-100"><a href="#" class="text-decoration-none text-dark fw-semibold d-block py-2">ห้องพัก</a></li>
-            <li class="py-2 w-100"><a href="#" class="text-decoration-none text-dark fw-semibold d-block py-2">บรรยากาศรีสอร์ท</a></li>
-            <li class="py-2 w-100"><a href="#" class="text-decoration-none text-dark fw-semibold d-block py-2">เกี่ยวกับเรา</a></li>
-        </ul>
-    </div>
-</header>
-
-    
-    
-
-    <!-- Carousel (Banner) -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                class="active"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="AT-resort01.jpg" class="d-block w-100" alt="Banner 1"
-                    style="height: 500px; object-fit: cover; transition: 0.5s;">
-            </div>
-            <div class="carousel-item">
-                <img src="AT-resort01.jpg" class="d-block w-100" alt="Banner 2"
-                    style="height: 500px; object-fit: cover; transition: 0.5s;">
-            </div>
-            <div class="carousel-item">
-                <img src="AT-resort01.jpg" class="d-block w-100" alt="Banner 3"
-                    style="height: 500px; object-fit: cover; transition: 0.5s;">
+    </header>
+
+
+
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <!-- Carousel สำหรับ Desktop -->
+                <div id="carouselDesktop" class="carousel slide shadow-lg rounded-3 overflow-hidden d-none d-md-block"
+                    data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselDesktop" data-bs-slide-to="0"
+                            class="active bg-white rounded-circle" style="width: 12px; height: 12px;"></button>
+                        <button type="button" data-bs-target="#carouselDesktop" data-bs-slide-to="1"
+                            class="bg-white rounded-circle" style="width: 12px; height: 12px;"></button>
+                        <button type="button" data-bs-target="#carouselDesktop" data-bs-slide-to="2"
+                            class="bg-white rounded-circle" style="width: 12px; height: 12px;"></button>
+                    </div>
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="AT-resort01.jpg" class="d-block w-100" alt="Desktop Banner 1"
+                                style="height: 500px; object-fit: cover;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="AT-resort01.jpg" class="d-block w-100" alt="Desktop Banner 2"
+                                style="height: 500px; object-fit: cover;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="AT-resort01.jpg" class="d-block w-100" alt="Desktop Banner 3"
+                                style="height: 500px; object-fit: cover;">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselDesktop"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselDesktop"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+
+                <!-- Carousel สำหรับ Mobile -->
+                <div id="carouselMobile" class="carousel slide shadow-lg rounded-3 overflow-hidden d-block d-md-none"
+                    data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselMobile" data-bs-slide-to="0"
+                            class="active bg-white rounded-circle" style="width: 10px; height: 10px;"></button>
+                        <button type="button" data-bs-target="#carouselMobile" data-bs-slide-to="1"
+                            class="bg-white rounded-circle" style="width: 10px; height: 10px;"></button>
+                        <button type="button" data-bs-target="#carouselMobile" data-bs-slide-to="2"
+                            class="bg-white rounded-circle" style="width: 10px; height: 10px;"></button>
+                    </div>
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="AT-resort01.jpg" class="d-block w-100 img-fluid" alt="Mobile Banner 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="AT-resort01.jpg" class="d-block w-100 img-fluid" alt="Mobile Banner 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="AT-resort01.jpg" class="d-block w-100 img-fluid" alt="Mobile Banner 3">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselMobile"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselMobile"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+
+
 
     <!-- Service Icons Section -->
     <div class="container mt-5">
@@ -304,33 +448,14 @@
     <div class="container mt-5">
         <div class="row about-section">
             <!-- ข้อความอยู่ซ้าย -->
-            <div class="col-md-6 d-flex align-items-center">
+            <div class="col-md-6 d-flex align-items-center justify-content-center text-center">
                 <div>
                     <h2 class="section-title">เกี่ยวกับเรา</h2>
                     <p>
-                        WIIN PHETCHABURI โรงแรมในอำเภอเมืองเพชรบุรี จำนวนห้องพัก 48 ห้อง
-                        เข้าถึงได้ง่ายจากถนนเพชรเกษมเพียง 1 กิโลเมตร เดินทางไปยังสถานที่สำคัญต่างๆ
-                        ในเมืองเพชรบุรีได้สะดวก มีบริการฟรีอินเทอร์เน็ตไร้สาย (WI-FI) และฟรีที่จอดรถ
-                        สำหรับผู้เข้าพัก โรงแรมเพชรบุรี
-                    </p>
-                    <p>
-                        นอกจากนี้ยังมีบริการห้องพักสำหรับผู้เข้าพักที่ใช้วิลแชร์ และห้องพักแบบ CONNECT
-                        สิ่งอำนวยความสะดวกในห้องพัก ได้แก่ เครื่องปรับอากาศ SMART TV พร้อมช่องดาวเทียม
-                        ตู้เย็น ระเบียงส่วนตัว มีบริเวณทำงาน กาต้มน้ำ และไดร์เป่าผมให้บริการ ที่พักจังหวัดเพชรบุรี
+                        รีสอร์ทสไตล์นอร์ดิค สวย สะอาด หรู ราคาสบายกระเป๋า <br>พร้อมสื่งอำนวยความสะดวกครบครัน
                     </p>
 
-                    <h5 class="mt-4 fw-bold">สถานที่สำคัญใกล้เคียง</h5>
-                    <ul class="list-unstyled">
-                        <li>• ศูนย์การค้าบิ๊กชีเพชรบุรี - <strong>1.2 กิโลเมตร</strong></li>
-                        <li>• โรงพยาบาลกรุงเทพ เพชรบุรี - <strong>1.2 กิโลเมตร</strong></li>
-                        <li>• พระราชวังรามราชนิเวศน์ - <strong>2 กิโลเมตร</strong></li>
-                        <li>• ศูนย์การค้าโรบินสันเพชรบุรี - <strong>3 กิโลเมตร</strong></li>
-                        <li>• ศาลากลางจังหวัดเพชรบุรี - <strong>3.5 กิโลเมตร</strong></li>
-                        <li>• มหาวิทยาลัยราชภัฎเพชรบุรี - <strong>4.5 กิโลเมตร</strong></li>
-                        <li>• โรงพยาบาลพระจอมเกล้า - <strong>4.5 กิโลเมตร</strong></li>
-                        <li>• พระนครคีรี - <strong>5 กิโลเมตร</strong></li>
-                        <li>• หาดเจ้าสำราญ - <strong>16.5 กิโลเมตร</strong></li>
-                    </ul>
+
                 </div>
             </div>
 
@@ -346,7 +471,9 @@
 
     <!-- Room Section -->
     <div class="container mt-5">
-        <h2 class="section-title">ห้องพักของเรา</h2>
+        <h2 class="section-title text-center">ห้องพักของเรา</h2>
+
+        <!-- ห้องพักแถวที่ 1 -->
         <div class="row mb-5 room-section">
             <div class="col-md-6 pe-0">
                 <div class="img-container">
@@ -362,67 +489,127 @@
             </div>
         </div>
 
-        <div class="row room-section">
-            <div class="col-md-6 d-flex align-items-center justify-content-center">
-                <div class="room-info">
-                    <h5>ห้องพัก 3 คน</h5>
-                    <p>ห้องพักกว้างขวาง รองรับการเข้าพักแบบกลุ่มและครอบครัว พร้อมวิวธรรมชาติ</p>
-                    <a href="#" class="btn btn-resort mt-3">ดูรายละเอียด</a>
-                </div>
-            </div>
-            <div class="col-md-6 ps-0">
+        <!-- ห้องพักแถวที่ 2 (สลับตำแหน่ง) -->
+        <div class="row mb-5 room-section flex-md-row-reverse">
+            <div class="col-md-6 pe-0">
                 <div class="img-container">
                     <img src="Room02.jpg" class="img-fluid w-100" alt="ห้องพัก 3 คน">
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Breakfast Section -->
-    <div class="container">
-        <h2 class="section-title">อาหารเช้า</h2>
-        <div class="row breakfast-section">
-            <div class="col-md-6">
-                <div class="img-container text-center">
-                    <img src="image02.jpg" class="img-fluid w-50" alt="อาหารเช้า">
-                </div>
-            </div>
-            <div class="col-md-6 d-flex align-items-center">
-                <div class="breakfast-info">
-                    <h5>อาหารเช้าฟรีสำหรับแขกของเรา</h5>
-                    <p>เราเสิร์ฟอาหารเช้าสดใหม่ทุกเช้า ทั้งขนมปัง กาแฟ และผลไม้</p>
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <div class="room-info">
+                    <h5>ห้องพัก 3 คน</h5>
+                    <p>ห้องพักสะอาด สะดวกสบาย พร้อมสิ่งอำนวยความสะดวกครบครัน</p>
+                    <a href="#" class="btn btn-resort mt-3">ดูรายละเอียด</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="footer mt-5">
+
+
+
+
+    <div class="container my-4">
+        <div class="row align-items-center justify-content-center text-center">
+            <!-- Google Map ด้านซ้าย -->
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                <h4 class="fw-bold">ใจกลางเทศบาลหนองบัววง</h4>
+                <p class="mb-0">อ.ลำทะเมนชัย จ.นครราชสีมา</p>
+            </div>
+
+            <!-- ข้อความด้านขวา -->
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 text-center text-md-start">
+
+                <div class="google-map border rounded shadow">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3847.3702473176904!2d102.90953635386236!3d15.356421792612249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3119ad004cb8471b%3A0xc537715ab43a9396!2sAT%20Resort!5e0!3m2!1sth!2sth!4v1741796759792!5m2!1sth!2sth"
+                        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5 bg-dark text-white py-4">
         <div class="container">
-            <div class="row">
-                <!-- คอลัม 1: ที่อยู่ + Google Map -->
-                <div class="col-md-4">
-                    <h5>ที่อยู่</h5>
-                    <p>123 หมู่ 5 ตำบลสวยงาม อำเภอเมือง จังหวัดเชียงใหม่</p>
-                    <p>ซอยอยู่เจริญ 1</p>
-                </div>
-
-                <!-- คอลัม 2: ช่องทางติดต่อ -->
-                <div class="col-md-4">
-                    <h5>ช่องทางติดต่อ</h5>
-                    <p>โทร: 083-8649613</p>
-                </div>
-
-                <!-- คอลัม 3: ติดต่อผ่าน Facebook และ Line -->
-                <div class="col-md-4">
-                    <h5>ติดต่อเรา</h5>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i> Facebook</a><br>
-                        <a href="#" class="social-icon"><i class="fa-brands fa-line"></i> Line</a>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="row align-items-center text-center">
+                        <!-- คอลัมน์ 1: ช่องทางติดต่อ -->
+                        <div class="col-md-6 mb-3 d-flex flex-column align-items-center">
+                            <h5>ช่องทางติดต่อ</h5>
+                            <p class="mb-0">โทร: 083-8649613</p>
+                        </div>
+    
+                        <!-- คอลัมน์ 2: ติดต่อผ่าน Facebook และ Line -->
+                        <div class="col-md-6 mb-3 d-flex flex-column align-items-center">
+                            <h5>ติดต่อเรา</h5>
+                            <div class="d-flex">
+                                <a href="#" class="text-decoration-none text-white me-4"><i class="fa-brands fa-facebook"></i> AT Resort</a>
+                                <a href="#" class="text-decoration-none text-white"><i class="fa-brands fa-line"></i> AT Resort</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+
+     <!-- Copyright -->
+     <div class="bg-secondary text-center py-2">
+        <p class="mb-0 text-light">&copy; 2024 Phunkorn. All Rights Reserved.</p>
+    </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var btnScrollTop = document.getElementById("btnScrollTop");
+            var btnContact = document.getElementById("btnContact");
+            var menuContact = document.getElementById("menuContact");
+            var contactIcon = btnContact.querySelector("i");
+
+            // เมื่อเลื่อนลงมา ให้แสดงปุ่ม Scroll to Top
+            window.onscroll = function () {
+                if (document.documentElement.scrollTop > 20 || document.body.scrollTop > 20) {
+                    btnScrollTop.style.display = "block";
+                } else {
+                    btnScrollTop.style.display = "none";
+                }
+            };
+
+            // ฟังก์ชันเลื่อนกลับด้านบน
+            window.topFunction = function () {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            };
+
+            // คลิกปุ่มติดต่อ: เปิด/ปิดเมนูด้วยเอฟเฟกต์ slide
+            btnContact.addEventListener("click", function (event) {
+                event.stopPropagation();
+                if (menuContact.classList.contains("active")) {
+                    menuContact.classList.remove("active");
+                    // เปลี่ยนไอคอนกลับเป็น fa-message
+                    contactIcon.classList.remove("fa-xmark");
+                    contactIcon.classList.add("fa-message");
+                } else {
+                    menuContact.classList.add("active");
+                    // เปลี่ยนไอคอนเป็นกากบาท
+                    contactIcon.classList.remove("fa-message");
+                    contactIcon.classList.add("fa-xmark");
+                }
+            });
+
+            // คลิกที่อื่น: ปิดเมนูติดต่อ (ถ้าเปิดอยู่)
+            document.addEventListener("click", function (event) {
+                if (!event.target.closest("#btnContact") && !event.target.closest("#menuContact")) {
+                    menuContact.classList.remove("active");
+                    contactIcon.classList.remove("fa-xmark");
+                    contactIcon.classList.add("fa-message");
+                }
+            });
+        });
+    </script>
 
 </body>
 
