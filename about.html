@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AT Resort | รีสอร์ท</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+
+        /* Top Nav */
+        .nav-top {
+            background-color: #16a085;
+            text-align: left;
+            color: white;
+            font-size: 16px;
+            display: flex;
+            justify-content: flex-end;
+            padding-left: 20px;
+            padding: 10px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-logo h1 {
+            font-size: 28px;
+            color: #000000;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #000000;
+            font-weight: 500;
+            transition: 0.3s ease;
+            padding: 10px 15px;
+        }
+
+        .nav-menu a:hover {
+            color: #16a085;
+            /* เปลี่ยนสีของตัวอักษรเมื่อ hover */
+            border-bottom: 2px solid #16a085;
+            /* เพิ่มเส้นใต้เมนู */
+        }
+
+        /* Navbar Menu Hover Effect */
+        .nav-menu ul li a {
+            position: relative;
+            padding: 10px 15px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+        }
+
+        /* เอฟเฟกต์ Hover บนเมนู (เฉพาะจอใหญ่) */
+        @media (min-width: 992px) {
+            .nav-menu ul li a:hover {
+                background-color: #16a085;
+                color: white !important;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+                transform: translateY(-2px);
+            }
+        }
+
+
+        .about-section {
+        background: #ffffff;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-bottom: 40px;
+    }
+    .about-section h3 {
+        font-size: 26px;
+        font-weight: bold;
+    }
+    .about-section ul li {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .icon-fixed {
+        min-width: 30px;
+        font-size: 20px;
+    }
+     /* ปุ่มโซเชียล */
+     .btn-outline-success {
+        border-color: #16a085;
+        color: #16a085;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+        .about-section {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .about-section h3 {
+            font-size: 22px;
+        }
+
+        .about-section ul li {
+            font-size: 16px;
+        }
+
+        .btn-success, .btn-outline-success {
+            font-size: 16px;
+        }
+
+        .d-flex.justify-content-lg-start {
+            justify-content: center !important;
+        }
+    }
+
+
+
+        /* Footer */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #1abc9c;
+        }
+
+        /* เมนูติดต่อเรา */
+        #menuContact {
+            position: fixed;
+            bottom: 270px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+        }
+
+        /* เมื่อเมนูเปิด */
+        #menuContact.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* สไตล์ปุ่มไอคอน */
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .icon-btn i {
+            font-size: 24px;
+        }
+
+        /* สีของไอคอน */
+        .icon-btn:first-child i {
+            color: #1877F2;
+            /* Facebook */
+        }
+
+        .icon-btn:last-child i {
+            color: #06C755;
+            /* Line */
+        }
+
+        /* เอฟเฟกต์ Hover */
+        .icon-btn:hover {
+            background: #f0f0f0;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <!-- ปุ่ม Scroll to Top -->
+    <button type="button" id="btnScrollTop" class="btn rounded-circle shadow-none" onclick="topFunction()"
+        style="display: none; position: fixed; bottom: 130px; right: 20px; background: #16a085; color: white; width: 50px; height: 50px; border: none; border-radius: 50%; z-index: 1000;">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- ปุ่มติดต่อเรา -->
+    <button type="button" id="btnContact" class="btn rounded-circle shadow-none"
+        style="position: fixed; bottom: 200px; right: 20px; background: #3498db; color: white; width: 50px; height: 50px; border: none; border-radius: 50%; z-index: 1000;">
+        <i class="fa-solid fa-message"></i>
+    </button>
+
+    <!-- เมนูติดต่อเรา (Facebook และ Line) -->
+    <div id="menuContact" class="contact-menu">
+        <a href="https://www.facebook.com/ATresort1" target="_blank" class="icon-btn">
+            <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://line.me" target="_blank" class="icon-btn">
+            <i class="fa-brands fa-line"></i>
+        </a>
+    </div>
+
+
+
+    <!-- Top Nav -->
+    <div class="nav-top">
+        <span><i class="fa-solid fa-phone text-decoration-none"></i> โทร. 085-7664996</span>
+    </div>
+
+    <header>
+        <div class="nav-container d-flex align-items-center justify-content-between px-3 py-2">
+            <!-- โลโก้ -->
+            <a href="index.html" class="text-decoration-none text-black">
+                <div class="nav-logo d-flex align-items-center">
+                    <img src="Logo-01.png" alt="AT Resort Logo" class="logo-img me-2"
+                        style="height: 50px; width: 50px;object-fit: contain; ">
+                    <span class="m-0" style="font-size: 22px; font-weight: bold;">AT Resort รีสอร์ท</span>
+                </div>
+            </a>
+
+            <!-- เมนูหลัก (แสดงเฉพาะจอใหญ่) -->
+            <nav class="nav-menu d-none d-lg-flex">
+                <ul class="d-flex list-unstyled m-0 gap-4">
+                    <li><a href="room.html" class="text-decoration-none text-dark fw-semibold">ห้องพัก</a></li>
+                    <li><a href="view.html" class="text-decoration-none text-dark fw-semibold">บรรยากาศรีสอร์ท</a></li>
+                    <li><a href="about.html" class="text-decoration-none text-dark fw-semibold">เกี่ยวกับเรา</a></li>
+                </ul>
+            </nav>
+
+            <!-- Burger Menu Button (แสดงเฉพาะจอเล็ก) -->
+            <button class="navbar-toggler d-lg-none border-0 bg-transparent shadow-sm rounded-circle p-2" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars fs-3"></i>
+            </button>
+        </div>
+
+        <!-- เมนูสำหรับจอเล็ก (ใช้ collapse) -->
+        <div class="collapse navbar-collapse d-lg-none bg-light p-3 shadow-sm rounded" id="navbarNav">
+            <ul class="navbar-nav d-flex flex-column align-items-center text-center">
+                <li class="py-2 w-100"><a href="room.html"
+                        class="text-decoration-none text-dark fw-semibold d-block py-2">ห้องพัก</a></li>
+                <li class="py-2 w-100"><a href="view.html"
+                        class="text-decoration-none text-dark fw-semibold d-block py-2">บรรยากาศรีสอร์ท</a></li>
+                <li class="py-2 w-100"><a href="about.html"
+                        class="text-decoration-none text-dark fw-semibold d-block py-2">เกี่ยวกับเรา</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+<!-- ABOUT AT RESORT -->
+<div class="container mt-5">
+    <div class="row about-section shadow-lg p-4 rounded-4 bg-white">
+        <!-- รูปภาพอยู่บน (เฉพาะจอเล็ก) และอยู่ซ้าย (จอใหญ่) -->
+        <div class="col-lg-6 order-1 order-lg-1 d-flex align-items-center justify-content-center">
+            <div class="img-container text-center">
+                <img src="image01.jpg" class="img-fluid w-100 rounded-4 shadow" alt="AT Resort บรรยากาศรีสอร์ท">
+            </div>
+        </div>
+
+        <!-- ข้อความอยู่ใต้รูปภาพ (เฉพาะจอเล็ก) และอยู่ขวา (จอใหญ่) -->
+        <div class="col-lg-6 order-2 order-lg-2 d-flex align-items-center">
+            <div class="text-center text-lg-start">
+                <h3 class="text-success fw-bold mt-3">🏡 AT Resort – รีสอร์ทสไตล์นอร์ดิก</h3>
+                <p class="text-muted mt-3">
+                    สัมผัสบรรยากาศแห่งการพักผ่อนที่ลงตัวกับรีสอร์ทสไตล์นอร์ดิกที่ **สวย หรู สะอาด** และราคาสบายกระเป๋า  
+                    พร้อมสิ่งอำนวยความสะดวกครบครัน รองรับทั้งนักเดินทาง คู่รัก และครอบครัวที่มองหาความสะดวกสบาย  
+                    ท่ามกลางธรรมชาติที่เงียบสงบ  
+                </p>
+                <ul class="list-unstyled mt-3">
+                    <li class="d-flex align-items-center">
+                        <i class="fa-solid fa-location-dot text-success me-3 icon-fixed"></i> 
+                        <span>ตั้งอยู่ใจกลาง **เทศบาลหนองบัววง อ.ลำทะเมนชัย จ.นครราชสีมา**</span>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <i class="fa-solid fa-check-circle text-success me-3 icon-fixed"></i> 
+                        <span>ห้องพักหรู พร้อม **Wi-Fi ฟรี, เครื่องปรับอากาศ, ทีวีจอแบน และเครื่องทำน้ำอุ่น**</span>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <i class="fa-solid fa-car text-success me-3 icon-fixed"></i> 
+                        <span>เดินทางสะดวก มีที่จอดรถกว้างขวาง</span>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <i class="fa-solid fa-utensils text-success me-3 icon-fixed"></i> 
+                        <span>ใกล้ร้านอาหารและสถานที่ท่องเที่ยว</span>
+                    </li>
+                </ul>
+                <div class="mt-3">
+                    <h5 class="text-success fw-bold"> ติดต่อผ่านโซเชียล</h5>
+                    <div class="d-flex justify-content-center justify-content-lg-start mt-2">
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/ATresort1" target="_blank"
+                            class="btn btn-outline-success d-flex align-items-center px-3 py-2 me-3">
+                            <i class="fa-brands fa-facebook me-2"></i> AT Resort
+                        </a>
+                        <!-- Line -->
+                        <a href="https://line.me/ti/p/~ATresort" target="_blank"
+                            class="btn btn-outline-success d-flex align-items-center px-3 py-2">
+                            <i class="fa-brands fa-line me-2"></i> AT Resort
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- หมวดหมู่: ติดต่อเรา -->
+                <div class="mt-4">
+                    <h5 class="text-success fw-bold"> สนใจจองห้องพัก</h5>
+                    <a href="tel:0857664996"
+                        class="btn btn-success d-flex align-items-center justify-content-center px-4 py-2 mt-2">
+                        <i class="fa-solid fa-phone me-2"></i> ติดต่อคุณมนัส 085-7664996
+                    </a>
+                </div>
+
+                <!-- หมวดหมู่: ติดต่อผ่านโซเชียล -->
+               
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <footer class="footer mt-5 bg-dark text-white py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="row align-items-center text-center">
+                        <!-- คอลัมน์ 1: ช่องทางติดต่อ -->
+                        <div class="col-md-6 mb-3 d-flex flex-column align-items-center">
+                            <h5>ช่องทางติดต่อ</h5>
+                            <p class="mb-0">โทร: 085-7664996</p>
+                        </div>
+
+                        <!-- คอลัมน์ 2: ติดต่อผ่าน Facebook และ Line -->
+                        <div class="col-md-6 mb-3 d-flex flex-column align-items-center">
+                            <h5>ติดต่อเรา</h5>
+                            <div class="d-flex">
+                                <a href="#" class="text-decoration-none text-white me-4"><i
+                                        class="fa-brands fa-facebook"></i> AT Resort</a>
+                                <a href="#" class="text-decoration-none text-white"><i class="fa-brands fa-line"></i> AT
+                                    Resort</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright -->
+    <div class="bg-secondary text-center py-2">
+        <p class="mb-0 text-light">&copy; 2024 Phunkorn. All Rights Reserved.</p>
+    </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var btnScrollTop = document.getElementById("btnScrollTop");
+            var btnContact = document.getElementById("btnContact");
+            var menuContact = document.getElementById("menuContact");
+            var contactIcon = btnContact.querySelector("i");
+
+            // เมื่อเลื่อนลงมา ให้แสดงปุ่ม Scroll to Top
+            window.onscroll = function () {
+                if (document.documentElement.scrollTop > 20 || document.body.scrollTop > 20) {
+                    btnScrollTop.style.display = "block";
+                } else {
+                    btnScrollTop.style.display = "none";
+                }
+            };
+
+            // ฟังก์ชันเลื่อนกลับด้านบน
+            window.topFunction = function () {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            };
+
+            // คลิกปุ่มติดต่อ: เปิด/ปิดเมนูด้วยเอฟเฟกต์ slide
+            btnContact.addEventListener("click", function (event) {
+                event.stopPropagation();
+                if (menuContact.classList.contains("active")) {
+                    menuContact.classList.remove("active");
+                    // เปลี่ยนไอคอนกลับเป็น fa-message
+                    contactIcon.classList.remove("fa-xmark");
+                    contactIcon.classList.add("fa-message");
+                } else {
+                    menuContact.classList.add("active");
+                    // เปลี่ยนไอคอนเป็นกากบาท
+                    contactIcon.classList.remove("fa-message");
+                    contactIcon.classList.add("fa-xmark");
+                }
+            });
+
+            // คลิกที่อื่น: ปิดเมนูติดต่อ (ถ้าเปิดอยู่)
+            document.addEventListener("click", function (event) {
+                if (!event.target.closest("#btnContact") && !event.target.closest("#menuContact")) {
+                    menuContact.classList.remove("active");
+                    contactIcon.classList.remove("fa-xmark");
+                    contactIcon.classList.add("fa-message");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
